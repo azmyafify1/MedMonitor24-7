@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using YourNamespace.Models;
 namespace MedMonitor24_7.Models
 {
     [Index(nameof(AdmissionID), nameof(VitalSignTypeID), nameof(ReadingTime))]

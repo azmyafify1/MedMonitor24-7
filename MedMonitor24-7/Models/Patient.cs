@@ -1,33 +1,41 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MedMonitor24_7.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MedMonitor24_7.Models
+namespace YourNamespace.Models;
+
+public class Patient
 {
-    [Index(nameof(Name))]
-    public class Patient
-    {
-        [Key]
-        public int PatientID { get; set; }
+    [Key]
+    public int PatientID { get; set; }
 
-        [Required, MaxLength(200)]
-        public string Name { get; set; } = null!;
+    [Required]
+    [MaxLength(200)]
+    public string Name { get; set; } = null!;
 
-        public int Age { get; set; }
+    [MaxLength(50)]
+    public string? PatientIdentifier { get; set; }
 
-        [Required]
-        public Gender Gender { get; set; }
+    [Required]
+    public int Age { get; set; }
 
-        public float Height { get; set; }
-        public float Weight { get; set; }
+    [Required]
+    [MaxLength(20)]
+    public string Gender { get; set; } = null!;
 
-        [Phone, MaxLength(20)]
-        public string? CompanionPhone { get; set; }
+    public float Height { get; set; }
 
-        [MaxLength(1000)]
-        public string? Diagnosis { get; set; }
+    public float Weight { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+    [Phone]
+    [MaxLength(20)]
+    public string? CompanionPhone { get; set; }
 
-        public ICollection<Admission> Admissions { get; set; } = new List<Admission>();
-    }
+    [MaxLength(1000)]
+    public string? Diagnosis { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    // Navigation
+    public ICollection<Admission> Admissions { get; set; } = new List<Admission>();
 }
